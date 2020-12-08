@@ -1,6 +1,6 @@
 Current Account 
 Account No: 1
-Password: Dobinhduy23
+Password: D
 User name: a
 Email: swdw
 Phone number: dw
@@ -33,7 +33,7 @@ Birthday: 1900/1/1
 Balance: 50.0
 Current Account 
 Account No: 1
-Password: 123
+Password: 12423
 User name: a3
 Email: sq
 Phone number: sq
@@ -74,4 +74,4 @@ Address: dwdw
 Occupation: ww
 Sex: Male
 Birthday: 1900/1/1
-Balance: 50.0
+Balance: 60.0
