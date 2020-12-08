@@ -74,4 +74,4 @@ Address: dwdw
 Occupation: ww
 Sex: Male
 Birthday: 1900/1/1
-Balance: 50.0
+Balance: 60.0
