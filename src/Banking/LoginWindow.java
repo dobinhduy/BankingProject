@@ -1,7 +1,6 @@
 package Banking;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -23,12 +21,14 @@ import javax.swing.JPasswordField;
 public class LoginWindow extends JFrame {
 
 	private JPanel contentPane;
+	
 	private JTextField Usernametxt;
+	private JPasswordField pass;
 	Database bd=Database.getInstance();
+	
 	JButton signin = new JButton("Sign in",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-add-user-male-16.png"));
 	JButton login = new JButton("Login",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\if_login_173049.png"));
-	private JPasswordField pass;
-
+    ImageIcon im=new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\mainmenu.jpeg");
 	public static void main(String[] args) {
 		new LoginWindow();
 		EventQueue.invokeLater(new Runnable() {
@@ -47,33 +47,36 @@ public class LoginWindow extends JFrame {
 		});
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 616, 569);
+		
+		setTitle("Log in Window");
+		setBounds(100, 100, 785, 387);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);;
+		contentPane.setLayout(null);
+		
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW);
-		panel.setBounds(0, 0, 602, 532);
+		panel.setBackground(Color.CYAN);
+		panel.setBounds(348, 0, 423, 356);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		Usernametxt = new JTextField();
 		Usernametxt.setFont(new Font("Tahoma", Font.BOLD, 13));
-		Usernametxt.setBounds(176, 166, 278, 29);
+		Usernametxt.setBounds(89, 92, 256, 29);
 		panel.add(Usernametxt);
 		Usernametxt.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("UserName");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(72, 165, 97, 30);
+		lblNewLabel.setBounds(89, 58, 97, 30);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(72, 261, 80, 22);
+		lblNewLabel_1.setBounds(88, 153, 80, 22);
 		panel.add(lblNewLabel_1);
 		
 		
@@ -86,13 +89,13 @@ public class LoginWindow extends JFrame {
 					}		
 		});
 		signin.setFont(new Font("Tahoma", Font.BOLD, 11));
-		signin.setBounds(192, 343, 97, 29);
+		signin.setBounds(89, 274, 107, 44);
 		panel.add(signin);
 			login.addActionListener(new ActionListener() {
-				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent e) {
 						Account acc;
-						if((acc=bd.getAccount(Usernametxt.getText(),pass.getText()) ) !=null) {							
+					if(isFill()) {
+						if((acc=bd.getAccount(Usernametxt.getText(), new String(pass.getPassword())) ) !=null) {							
 							dispose();
 							MainMenu ac=new MainMenu(acc);
 							ac.setVisible(true);
@@ -100,24 +103,36 @@ public class LoginWindow extends JFrame {
 						else
 						{
 							JOptionPane.showMessageDialog(null, "Account is not correct", "Login False",JOptionPane.ERROR_MESSAGE);
-						}
+						}}
+					else
+						JOptionPane.showMessageDialog(null, "Input log in imformation!!","Error",JOptionPane.ERROR_MESSAGE);
 					
 				
 				}});
 		
 		login.setFont(new Font("Tahoma", Font.BOLD, 11));
-		login.setBounds(342, 343, 97, 29);
+		login.setBounds(238, 274, 107, 44);
 		panel.add(login);
-		
-		JLabel lblNewLabel_2 = new JLabel("Login Window");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(176, 61, 278, 36);
-		panel.add(lblNewLabel_2);
 		
 		pass = new JPasswordField();
 		pass.setFont(new Font("Tahoma", Font.BOLD, 13));
-		pass.setBounds(176, 258, 278, 29);
+		pass.setBounds(88, 185, 256, 29);
 		panel.add(pass);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 0, 350, 350);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel(im);
+		lblNewLabel_2.setBounds(0, 0, 350, 350);
+		panel_1.add(lblNewLabel_2);
+	}
+	public boolean isFill() {
+		String passw=  new String(pass.getPassword());
+		if(Usernametxt.getText().isEmpty() || passw.isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 }

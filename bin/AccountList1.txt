@@ -1,110 +1,36 @@
 Current Account 
 Account No: 1
-Password: q
-User name: qwq
-Email: qeq
-Phone number: eq
-Address: eq
-Occupation: eq
-Sex: Female
-Birthday: 1900/1/1
-Balance: 50.0
-History: 2
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.9
-  +Changed Amount: 1.0
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.6
-  +Changed Amount: 0.7
-Current Account 
-Account No: 1
-Password: 1
-User name: q
-Email: 1
-Phone number: 1
-Address: 1
-Occupation: 1
-Sex: Male
-Birthday: 1900/1/1
-Balance: 50.0
-History: 2
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.9
-  +Changed Amount: 1.0
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.6
-  +Changed Amount: 0.7
-Current Account 
-Account No: 1
-Password: 2
-User name: 2
-Email: 2
-Phone number: 2
-Address: 2
-Occupation: 2
-Sex: Male
-Birthday: 1900/1/1
-Balance: 50.0
-History: 2
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.9
-  +Changed Amount: 1.0
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.6
-  +Changed Amount: 0.7
-Current Account 
-Account No: 1
-Password: 3
-User name: 3
-Email: 3
-Phone number: 3
-Address: 3
-Occupation: 3
-Sex: Male
-Birthday: 1900/1/1
-Balance: 50.0
-History: 2
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.9
-  +Changed Amount: 1.0
-  -Type: a
-  +Date: 12
-  +Time: ewe
-  +Cost: 0.6
-  +Changed Amount: 0.7
-Current Account 
-Account No: 1
 Password: a
 User name: a
-Email: qsq
-Phone number: sq
-Address: aq
-Occupation: sq
+Email: a
+Phone number: aaa
+Address: aa
+Occupation: a
 Sex: Male
 Birthday: 1900/1/1
-Balance: 14.0
-History: 2
+Balance: 303.0
+History: 4
   -Type: WithDraw
-  +Date: 2020/12/11
-  +Time: 23-52-27
+  +TransferTo:                                             
+  +Date: 2020/12/12
+  +Time: 11-54-59
   +Cost: 5.0
-  +Changed Amount: -13
+  +Changed Amount: -23
+  -Type: Deposit
+  +TransferTo:                                             
+  +Date: 2020/12/12
+  +Time: 11-55-03
+  +Cost: 0.0
+  +Changed Amount: +322
   -Type: WithDraw
-  +Date: 2020/12/11
-  +Time: 23-54-09
+  +TransferTo:                                             _
+  +Date: 2020/12/12
+  +Time: 11-57-01
+  +Cost: 5.0
+  +Changed Amount: -23
+  -Type: WithDraw
+  +TransferTo:                                             
+  +Date: 2020/12/12
+  +Time: 11-57-45
   +Cost: 5.0
   +Changed Amount: -23

@@ -116,6 +116,7 @@ public class EditProfile extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkfill()) {
+					if(!isSelectBoth()) {
 					String sex;
 					String day;
 					day= yearBox.getSelectedItem().toString()+ "/" + monthBox.getSelectedItem().toString()+"/"+dayBox.getSelectedItem().toString();
@@ -135,6 +136,9 @@ public class EditProfile extends JFrame {
 					MainMenu a=  new MainMenu(acc);
 					a.painUserDetail();
 					a.setVisible(true);
+				}
+					else 
+						JOptionPane.showMessageDialog(null, "Only select one sex!!");
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Fill all","Error",JOptionPane.ERROR_MESSAGE);
@@ -179,6 +183,12 @@ public class EditProfile extends JFrame {
 			return false;
 		}
 		return true;
+	}
+	boolean isSelectBoth() {
+		if(MaleButton.isSelected() && FemaleButton.isSelected() ) {
+			return true;
+		}
+		return false;
 	}
 	
 	 void generateDate()
