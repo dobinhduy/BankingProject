@@ -2,10 +2,12 @@ package Banking;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -16,7 +18,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
 
-public class SignUpWindow implements Matchable {
+
+public class SignUpWindow  implements MatchAble   {
 
 	private JFrame frame;
 	private JTextField firstNametxt;
@@ -24,7 +27,7 @@ public class SignUpWindow implements Matchable {
 	private JTextField phoneNotxt;
 	private JTextField jobtxt;
 	private JTextField addtxt;
-	
+
 	private JRadioButton sexMale;
 	private JRadioButton sexFemale;
 	
@@ -33,6 +36,7 @@ public class SignUpWindow implements Matchable {
 	JComboBox<Integer> dayBox = new JComboBox<Integer>();
 	JComboBox<Integer> monthBox = new JComboBox<Integer>();
 	JComboBox<Integer> yearBox = new JComboBox<Integer>();
+	
 	
 	JLabel lblNewLabel = new JLabel("Username");
 	JLabel lblNewLabel_1 = new JLabel("Password");
@@ -44,15 +48,15 @@ public class SignUpWindow implements Matchable {
 	JLabel lblNewLabel_6 = new JLabel("Address");
 	
 	JButton btnNewButton_1 = new JButton("Create new account",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-ok-16.png"));
-	JButton backBt = new JButton("Back",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-go-back-16.png"));
+	JButton backBt = new JButton("Back",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\back.png"));
 	
 	Database db =Database.getInstance();
 	
 	
 	private JPasswordField passwordtxt;
 	private JPasswordField conformtxt;
+	History his ;
 	
-	String password =String.valueOf(passwordtxt.getPassword());
 	public SignUpWindow() {
 		initialize();
 		this.frame.setVisible(true);
@@ -66,7 +70,6 @@ public class SignUpWindow implements Matchable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(false);
-		
 		
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setBounds(92, 116, 85, 34);
@@ -178,7 +181,7 @@ public class SignUpWindow implements Matchable {
 				}	
 		});
 		backBt.setFont(new Font("Tahoma", Font.BOLD, 13));
-		backBt.setBounds(251, 614, 85, 21);
+		backBt.setBounds(251, 614, 103, 21);
 		frame.getContentPane().add(backBt);
 		
 		JLabel lblNewLabel_7 = new JLabel("Account Type");
@@ -190,7 +193,7 @@ public class SignUpWindow implements Matchable {
 				if(checkfill()) {	
 					if(isPasswordValid()) {
 					    if(isPasswordMatch()) {
-						   if(db.isAccExist(firstNametxt.getText())) {
+						   if(!db.isAccExist(firstNametxt.getText())) {
 							createAccount();
 							JOptionPane.showMessageDialog(null, "Created Success","",JOptionPane.INFORMATION_MESSAGE);
 			    		   	frame.dispose();			    
@@ -222,6 +225,7 @@ public class SignUpWindow implements Matchable {
 
 	} 
 	boolean checkfill() {
+		String password =String.valueOf(passwordtxt.getPassword());
 		if(firstNametxt.getText().isEmpty()|| password.isEmpty() || password.isEmpty()
 				|| emailtxt.getText().isEmpty()	|| phoneNotxt.getText().isEmpty() 
 				  || jobtxt.getText().isEmpty()) 
@@ -234,10 +238,11 @@ public class SignUpWindow implements Matchable {
 		return true;
 	}
 	void createAccount() {
+		String password =String.valueOf(passwordtxt.getPassword());
+		his=new History();
 		int accNo = 1;
 		String sex;
 		String day = yearBox.getSelectedItem().toString() +'/'+ monthBox.getSelectedItem().toString() + '/' + dayBox.getSelectedItem().toString();
-	
 		Account acc;
 		if(sexMale.isSelected()) {
 			sex= "Male";		
@@ -245,14 +250,13 @@ public class SignUpWindow implements Matchable {
 		else 
 			sex= "Female";
 		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), addtxt.getText(), jobtxt.getText(), sex, day);
-		
 		    	   if(comboBox.getSelectedIndex()==0) {
-		    		   acc=new SavingAccount(accNo,password, 50.000, user);
-		    		   	db.addAccount(acc);
+		    		   acc=new SavingAccount(accNo,password, 50.0, user,his);
+		    		   	db.addAccount(acc);	                
 		    		   	db.saveData();
-		    	   				}
+		    	   			}
 		    	   else {
-		    		   acc= new CurrentAccount(accNo, password, 50.000, user);
+		    		   acc= new CurrentAccount(accNo, password, 50.0, user,his);
 		    		   db.addAccount(acc);	    		
 		    		   db.saveData();
 		    	   	}
@@ -276,27 +280,27 @@ public class SignUpWindow implements Matchable {
 	}
 	@Override
     public boolean isPasswordValid() {
-    	int countUp=0;
-    	int countLow=0;
-    	int digit=0;
-    	String a= new String(passwordtxt.getPassword());
-    	if(a.length()>8) {
-    		for(int i=0 ; i<a.length();i++) {
-    			char c= a.charAt(i);
-    			if(Character.isUpperCase(c))
-    			countUp++;
-    			if(Character.isLowerCase(c))
-    			countLow++;
-    			if(Character.isDigit(c))
-    				digit++;
-    		}
-    		if(countLow>=1 && countUp>=1 && digit>=1 ) {
-    			countLow=0;
-    			countUp=0;
-    			digit=0;
-    			return true;
-    		}}
-    	return false;
+//    	int countUp=0;
+//    	int countLow=0;
+//    	int digit=0;
+//    	String a= new String(passwordtxt.getPassword());
+//    	if(a.length()>8) {
+//    		for(int i=0 ; i<a.length();i++) {
+//    			char c= a.charAt(i);
+//    			if(Character.isUpperCase(c))
+//    			countUp++;
+//    			if(Character.isLowerCase(c))
+//    			countLow++;
+//    			if(Character.isDigit(c))
+//    				digit++;
+//    		}
+//    		if(countLow>=1 && countUp>=1 && digit>=1 ) {
+//    			countLow=0;
+//    			countUp=0;
+//    			digit=0;
+//    			return true;
+//    		}}
+    	return true;
     }
 	@Override
 	public boolean isPasswordMatch() {
@@ -307,5 +311,5 @@ public class SignUpWindow implements Matchable {
 		
 		return false;
 	}
-}
+	}
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Database {
 	private static Database instance;
 	ArrayList<Account> listofacc=new ArrayList<>();
-
+   
 	public static Database getInstance() {
 		if(instance==null) {
 		instance=new Database();
@@ -66,6 +66,7 @@ public class Database {
 			for(int i=0;i<listofacc.size();i++) {
 				bfw.write(listofacc.get(i).toString());
 			}
+			
 			bfw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,28 +77,40 @@ public class Database {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(new  File("D:\\Code\\BankingOOP\\BankingProject\\src\\AccountList1.txt")));
 			String type;
+			
 			while((type=bf.readLine()) != null) {
+				History his=new History();
 				Account acc;
 				String accNo = bf.readLine().split(": ")[1];
 				String pin = bf.readLine().split(": ")[1];
 				String userName = bf.readLine().split(": ")[1];
 				String email = bf.readLine().split(": ")[1];
-				String phoneNo = bf.readLine().split(": ")[1];
+				String phoneNumber = bf.readLine().split(": ")[1];
 				String address = bf.readLine().split(": ")[1];
 				String occ = bf.readLine().split(": ")[1];
 				String sex = bf.readLine().split(": ")[1];
 				String dOb = bf.readLine().split(": ")[1];
 				String balance = bf.readLine().split(": ")[1];
+				String numTrans=   bf.readLine().split(": ")[1];
+				for(int i=0; i< Integer.parseInt(numTrans);i++) {
+					String typeH= bf.readLine().split(": ")[1];
+					String dateH =bf.readLine().split(": ")[1];
+					String time = bf.readLine().split(": ")[1];
+					String cost = bf.readLine().split(": ")[1];
+					String change= bf.readLine().split(": ")[1];
+					his.addTranlist(new Transaction(typeH, dateH, time, Double.parseDouble(cost), change));
+				}
+			
 				if(type.equals(Account.SAVINGS_ACCOUNT)){				
-					acc = new SavingAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNo
-									,address, occ, sex, dOb));
+					acc = new SavingAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
+									,address, occ, sex, dOb),his);
 					
 				}
 				else {
-					acc = new CurrentAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNo
-							,address, occ, sex, dOb));
+					acc = new CurrentAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
+							,address, occ, sex, dOb),his);
 					
-				}		
+				}
 				addAccount(acc);
 			}
 			bf.close();

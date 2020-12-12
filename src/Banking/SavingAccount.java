@@ -1,10 +1,11 @@
 package Banking;
 
+
 public class SavingAccount extends Account {
 	
 	
-    SavingAccount(int acc,String pin,Double balance,UserInformation u) {
-    	super(u);
+    SavingAccount(int acc,String pin,Double balance,UserInformation u,History his) {
+    	super(u,his);
 		super.setAccountNo(acc);
 		super.setPIN(pin);
 		super.setBalance(balance);

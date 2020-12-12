@@ -1,4 +1,5 @@
 package Banking;
+
 import javax.swing.JFrame;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
@@ -14,16 +15,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
+
+import javax.swing.JScrollPane;
 
 
 @SuppressWarnings("serial")
-public class MainMenu extends JFrame implements Matchable {
+public class MainMenu extends JFrame implements MatchAble {
 	Database db = Database.getInstance();
 	Account ac;
+	History his;
 	JTextField accountNoT = new JTextField("",25);
 	JTextField amountT = new JTextField("",20);
 	JTextField depositMoney =new JTextField("", 15);
@@ -39,19 +46,25 @@ public class MainMenu extends JFrame implements Matchable {
 	JButton deposit = new JButton("Deposit");
 	JButton tranferMoney = new JButton("Tranfer Money");
 	JButton changePin = new JButton("Change Pin");
-	JButton logOut = new JButton("Log out");
+	JButton logOut = new JButton("Log out",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\logout.png"));
 	
 	JButton WithDrawButtom = new JButton("WithDraw");
 	JButton transferBottom = new JButton("Transfer");
 	JButton withdrawalBottom = new JButton("Withdraw");
 	JButton depositBottom = new JButton("Deposit");
-	JButton payBillBottom = new JButton("Pay");
 	JButton PinBotton = new JButton("ChangePIN");
 	JButton searchBottom =new JButton("Search");
 	JButton editBottom =new JButton("Edit Profile",new ImageIcon("C:\\Users\\dobin\\OneDrive\\Máy tính\\OOP\\image\\icons8-edit-file-16.png"));
+	JButton viewWithdrawHis =new JButton("View History");
+	JButton viewDeposit =new JButton("View History");
+	JButton viewTranHis =new JButton("View History");
+	
+	JScrollPane scrollPane = new JScrollPane();
 
-	JLabel lblNewLabel_1 = new JLabel("Wellcome");
+	JLabel hello = new JLabel(new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\button_plant_green_butterfly_hellow_animation_clipart.gif"));
 	JPanel center = new JPanel();
+	private final JLabel name = new JLabel("");
+	private final JLabel lblNewLabel = new JLabel("            ");
 
 	public MainMenu(Account acc) {
 		this.ac=acc;
@@ -65,7 +78,7 @@ public class MainMenu extends JFrame implements Matchable {
 		});
 		editBottom.setSize(10, 10);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 924, 592);
+		setBounds(100, 100, 1096, 712);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		JPanel central = new JPanel();
 		getContentPane().add(central, BorderLayout.CENTER);
@@ -73,34 +86,40 @@ public class MainMenu extends JFrame implements Matchable {
 		
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.CYAN);
+		panel_3.setForeground(Color.WHITE);
+		panel_3.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panel_3.setBackground(Color.GREEN);
 		central.add(panel_3, BorderLayout.WEST);
 		profile.setBackground(Color.YELLOW);
 		profile.setForeground(Color.BLACK);
 		
 		profile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setColor();
+				profile.setBackground(Color.ORANGE);
 				painUserDetail();
 					
 			}
 		});
-		panel_3.setLayout(new GridLayout(11, 1, 7, 10));
-		profile.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.setLayout(new GridLayout(7, 1, 20, 25));
 		profile.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel_3.add(profile);
-		
-		withDraw.setHorizontalAlignment(SwingConstants.LEFT);
+		withDraw.setBackground(Color.YELLOW);
 		withDraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setColor();
+				withDraw.setBackground(Color.ORANGE);
 				painWithdraw();
 				
 			}
 		});
 		withDraw.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel_3.add(withDraw);
-		deposit.setHorizontalAlignment(SwingConstants.LEFT);
+		deposit.setBackground(Color.YELLOW);
 		deposit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setColor();
+				deposit.setBackground(Color.orange);
 				paineDeposit();
 			}
 		});
@@ -117,44 +136,63 @@ public class MainMenu extends JFrame implements Matchable {
 		});
 		deposit.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel_3.add(deposit);
+		tranferMoney.setBackground(Color.YELLOW);
 		tranferMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setColor();
+				tranferMoney.setBackground(Color.ORANGE);
 				tranferMoney();
 			}
 		});
 		
 			tranferMoney.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel_3.add(tranferMoney);
+		    changePin.setBackground(Color.YELLOW);
 		    changePin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setColor();
+				changePin.setBackground(Color.ORANGE);
 				paineChangePin();
 			}
 		});
 		
 		changePin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel_3.add(changePin);
-		FlowLayout flowLayout = (FlowLayout) center.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
-		flowLayout.setVgap(1);
-		flowLayout.setHgap(10);
-		center.setBackground(Color.ORANGE);
+		center.setBackground(Color.LIGHT_GRAY);
 		
 		central.add(center, BorderLayout.CENTER);
+		center.setLayout(null);
+		
+		
 			
 		JPanel panel1 = new JPanel();
-		FlowLayout fl_panel1 = (FlowLayout) panel1.getLayout();
-		fl_panel1.setVgap(40);
-		fl_panel1.setHgap(40);
+		panel1.setBorder(new LineBorder(new Color(210, 105, 30), 3));
+		panel1.setBackground(Color.DARK_GRAY);
 		getContentPane().add(panel1, BorderLayout.NORTH);
+		name.setFont(new Font("Tahoma", Font.BOLD, 37));
+		name.setHorizontalAlignment(SwingConstants.LEFT);
+		name.setText(""+ ac.user.getUserName());
+		panel1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 30));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		panel1.add(lblNewLabel);
+		hello.setText(" ");
+		hello.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panel1.add(lblNewLabel_1);
+		hello.setFont(new Font("Tahoma", Font.BOLD, 15));
+		panel1.add(hello);
+		
+		panel1.add(name);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.GREEN);
+		panel_1.setForeground(Color.WHITE);
+		panel_1.setBorder(new EmptyBorder(4, 5, 6, 0));
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
 		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
+		logOut.setBackground(Color.YELLOW);
 		logOut.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel_1.add(logOut);
 		logOut.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -240,6 +278,10 @@ public class MainMenu extends JFrame implements Matchable {
 				    	 JOptionPane.showMessageDialog(null, "Withdraw limit over 1000 dollars");				
 				     if(ac.withdrawMoney(Double.parseDouble(withDrawtxt.getText()))==4) {			    	
 				    	 ac.setBalance(ac.getBalance()-Double.parseDouble(withDrawtxt.getText()));
+				    	 String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH-mm-ss").format(Calendar.getInstance().getTime());
+				    	 String a= timeStamp.split("_")[0];
+				    	 String b = timeStamp.split("_")[1];	    	
+				    	 acc.vhis.addTranlist(new Transaction("WithDraw",  a, b, 5.0, "-" + withDrawtxt.getText()));
 				    	 JOptionPane.showMessageDialog(null, "Withdraw Successful");
 				    	 painWithdraw();
 				     }
@@ -272,37 +314,56 @@ public class MainMenu extends JFrame implements Matchable {
 				
 			}
 		});
+		viewWithdrawHis.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		    dispose();
+		    ViewHistory view =new ViewHistory(ac);
+		    view.setVisible(true);
+				
+			}
+		});
 	}
 	protected void painWithdraw() {
 		panelClear();
-		center.setBorder(new EmptyBorder(50, 100, 30,200));
-		center.setLayout(new GridLayout(4, 3, 20, 70));
+		center.setBorder(new EmptyBorder(50, 100, 30,100));
+		center.setLayout(new GridLayout(4, 4, 50, 70));
 	    center.add(new JLabel("User Name: "));
 	    center.add(new JLabel(ac.user.getUserName()));
+	    center.add(new JLabel());
 	    center.add(new JLabel());
 	    center.add(new JLabel("Available Balance: "));
 	    center.add(new JLabel(""+ac.getBalance()+" Dollars"));
 	    center.add(new JLabel());
-	    center.add(new JLabel("With Draw"));
+	    center.add(new JLabel());
+	    center.add(new JLabel("Enter the amount: "));
 	    center.add(withDrawtxt);
+	    center.add(WithDrawButtom);	
+	    center.add(new JLabel());   
 	    center.add(new JLabel());
 	    center.add(new JLabel());
+	    center.add(viewWithdrawHis); 
 	    center.add(new JLabel());
-        center.add(WithDrawButtom);	    
+	       
         this.revalidate();
 
-		
+	
 	}
 	protected void paineChangePin() {
 		panelClear();
-		center.setBorder(new EmptyBorder(50, 120, 50,50));
-		center.setLayout(new GridLayout(4, 2, 50, 70));
+		center.setBorder(new EmptyBorder(100, 200, 30,250));
+		center.setLayout(new GridLayout(4, 3, 20, 70));
 		center.add(new JLabel(" Current Password: "));
 		center.add(oldP);
+		center.add(new JLabel());
 		center.add(new JLabel("New Password: "));
 		center.add(newP);
+		center.add(new JLabel());
 		center.add(new JLabel("Comform: "));
 		center.add(reNewP);
+		center.add(new JLabel());
+		center.add(new JLabel());
 		center.add(new JLabel());
 		center.add(PinBotton);
 		this.revalidate();
@@ -310,26 +371,32 @@ public class MainMenu extends JFrame implements Matchable {
 	}
 	protected void paineDeposit() {
 		panelClear();
-		center.setBorder(new EmptyBorder(50, 100, 30,30));
-		center.setLayout(new GridLayout(4, 3, 20, 70));
+		center.setBorder(new EmptyBorder(50, 100, 30,100));
+		center.setLayout(new GridLayout(4, 4, 50, 70));
 		center.add(new JLabel("User Name: "));
 		center.add(new JLabel(ac.user.getUserName()));
+		center.add(new JLabel());
 		center.add(new JLabel());
 		center.add(new JLabel("Available Balance: "));
 		center.add(new JLabel(""+ac.getBalance()+" Dollars"));
 		center.add(new JLabel());
+		center.add(new JLabel());
 		center.add(new JLabel("Deposit: "));
 		center.add(depositMoney);
-		center.add(new JLabel());
-		center.add(new JLabel());
-		center.add(new JLabel());
 		center.add(depositBottom);
+		center.add(new JLabel());
+		center.add(new JLabel());
+		center.add(new JLabel());
+		center.add(viewDeposit);
+		center.add(new JLabel());
+		
 		this.revalidate();
 		
 	}
 	protected void painUserDetail() {
 		panelClear();
-		center.setBorder(new EmptyBorder(50, 150, 50,200));
+	
+		center.setBorder(new EmptyBorder(50, 200, 50,350));
 		center.setLayout(new GridLayout(0, 2, 150, 0));
 		center.add(new JLabel("Full Name:"));
 		center.add(new JLabel(ac.user.userName+""));
@@ -352,14 +419,20 @@ public class MainMenu extends JFrame implements Matchable {
 	}
 	private void tranferMoney() {
 		panelClear();
-		center.setBorder(new EmptyBorder(80, 120, 70,10));
-		center.setLayout(new GridLayout(3, 2, 60, 70));
+		center.setBorder(new EmptyBorder(20, 120, 70,300));
+		center.setLayout(new GridLayout(4, 3, 50, 70));
+		center.add(new JLabel());	
+		center.add(new JLabel());	
+		center.add(new JLabel());	
 		center.add(new JLabel("Account Name:",JLabel.LEFT));
 		center.add(accounTransfer);
+		center.add(searchBottom);
 		center.add(new JLabel("Enter Amount:"));
 		center.add(amountT);
-		center.add(new JLabel());
 		center.add(transferBottom);
+		center.add(new JLabel());	
+		center.add(new JLabel());
+		center.add(viewTranHis);
 		this.revalidate();
 		
 	}
@@ -373,6 +446,7 @@ public class MainMenu extends JFrame implements Matchable {
 		reNewP.setText("");
 		depositMoney.setText("");
 		withDrawtxt.setText("");
+		
 	}
 	public static boolean isNumeric(String str) { 
 		  try {  
@@ -415,4 +489,12 @@ public class MainMenu extends JFrame implements Matchable {
     		}}
     	return false;
     }
+	public void setColor() {
+		profile.setBackground(Color.YELLOW);
+		tranferMoney.setBackground(Color.YELLOW);
+		deposit.setBackground(Color.YELLOW);
+		withDraw.setBackground(Color.YELLOW);
+		changePin.setBackground(Color.YELLOW);
+		
+	}
 }

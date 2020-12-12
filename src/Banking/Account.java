@@ -1,4 +1,6 @@
 package Banking;
+
+
 public abstract class Account
 {
 	public static final int SAVINGS_ACCOUNT=1;
@@ -10,8 +12,8 @@ public abstract class Account
 	
 	private int accountNo;
 	private String password;
-	protected UserInformation user;
-	
+	protected UserInformation user;	
+	protected History vhis;
 	protected double balance;
 	protected double minBalance;
 	protected double minWithdrawal;
@@ -22,16 +24,18 @@ public abstract class Account
 	public abstract void setMinBalance(double a);
 	public abstract void setWithdrawalLimit(double l, double h);
 	public abstract int getAccountType();
-	Account(int accNo,String password,UserInformation u){
+	Account(int accNo,String password,UserInformation u, History his){
 		this.accountNo=accNo;
 		this.password=password;
+		vhis=his;
 		user=u;
 	}
-	
-	public Account(UserInformation u) {
+	public Account(UserInformation u,History his) {
 		user=u;
+		vhis=his;
 		
 	}
+	
 	double getBalance()
 	{
 		return balance;
@@ -91,9 +95,9 @@ public abstract class Account
 		public String toString()
 		{   if(getAccountType()==1) {
 			return "Saving Account " + "\n"+ "Account No: " + accountNo + "\n" +"Password: " + password + "\n" +
-					     user + "\n"+"Balance: " + balance + "\n" ;
+					     user + "\n"+"Balance: " + balance + "\n" + "History: "+vhis.getSize()+"\n"+ vhis.toString();
 		}
 			return "Current Account " + "\n"+ "Account No: " + accountNo + "\n" +"Password: " + password + "\n"+
-		                user + "\n" +"Balance: " + balance + "\n";
+		                user + "\n" +"Balance: " + balance + "\n"+  "History: "+vhis.getSize()+"\n"+ vhis.toString() ;
 		}
 	}

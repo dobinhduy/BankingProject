@@ -1,6 +1,6 @@
 package Banking;
 
-public interface Matchable {
+public interface MatchAble {
        boolean isPasswordMatch();
        boolean isPasswordValid(); 
 }

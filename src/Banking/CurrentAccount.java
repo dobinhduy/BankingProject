@@ -1,10 +1,11 @@
 package Banking;
 
-	public class CurrentAccount extends Account{
+
+public class CurrentAccount extends Account{
 	
-			public CurrentAccount(int an, String pin,double balance, UserInformation u)
+			public CurrentAccount(int an, String pin,double balance, UserInformation u,History his)
 			{
-				super(u);
+				super(u,his);
 				super.setAccountNo(an);
 				super.setPIN(pin);
 				super.setBalance(balance);

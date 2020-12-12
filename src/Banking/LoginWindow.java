@@ -26,7 +26,7 @@ public class LoginWindow extends JFrame {
 	private JTextField Usernametxt;
 	Database bd=Database.getInstance();
 	JButton signin = new JButton("Sign in",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-add-user-male-16.png"));
-	JButton login = new JButton("Login",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-login-16.png"));
+	JButton login = new JButton("Login",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\if_login_173049.png"));
 	private JPasswordField pass;
 
 	public static void main(String[] args) {
@@ -46,13 +46,12 @@ public class LoginWindow extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 		});
 		
-	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 616, 569);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(null);;
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);
@@ -107,7 +106,7 @@ public class LoginWindow extends JFrame {
 				}});
 		
 		login.setFont(new Font("Tahoma", Font.BOLD, 11));
-		login.setBounds(342, 343, 91, 29);
+		login.setBounds(342, 343, 97, 29);
 		panel.add(login);
 		
 		JLabel lblNewLabel_2 = new JLabel("Login Window");

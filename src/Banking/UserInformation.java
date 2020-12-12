@@ -82,7 +82,7 @@ public class UserInformation
 
 	public String toString()
 	{
-		return  "User name: " +userName + "\n" + "Email: " +email + "\n"
+		return  "User name: " + userName + "\n" + "Email: " +email + "\n"
 				+"Phone number: " + phoneNo + "\n" +"Address: "+ address + "\n" +
 				"Occupation: " + occupation + "\n" +"Sex: " + sex
 				+ "\n" + "Birthday: " +birthdate;
