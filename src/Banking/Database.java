@@ -76,8 +76,7 @@ public class Database {
 	private void loadData() {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(new  File("D:\\Code\\BankingOOP\\BankingProject\\src\\AccountList1.txt")));
-			String type;
-			
+			String type;		
 			while((type=bf.readLine()) != null) {
 				History his=new History();
 				Account acc;
@@ -95,11 +94,12 @@ public class Database {
 				for(int i=0; i< Integer.parseInt(numTrans);i++) {
 					String typeH= bf.readLine().split(": ")[1];
 					String transTo =bf.readLine().split(": ")[1];
+					String transFrom=bf.readLine().split(": ")[1];
 					String dateH =bf.readLine().split(": ")[1];
 					String time = bf.readLine().split(": ")[1];
 					String cost = bf.readLine().split(": ")[1];
 					String change= bf.readLine().split(": ")[1];
-					his.addTranlist(new Transaction(typeH,transTo, dateH, time, Double.parseDouble(cost), change));
+					his.addTranlist(new Transaction(typeH,transTo,transFrom, dateH, time, Double.parseDouble(cost), change));
 				}
 			
 				if(type.equals(Account.SAVINGS_ACCOUNT)){				

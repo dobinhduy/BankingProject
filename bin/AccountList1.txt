@@ -1,36 +1,80 @@
 Current Account 
-Account No: 1
+Account No: 0
 Password: a
 User name: a
 Email: a
-Phone number: aaa
-Address: aa
+Phone number: a
+Address: a
 Occupation: a
 Sex: Male
 Birthday: 1900/1/1
-Balance: 303.0
-History: 4
-  -Type: WithDraw
-  +TransferTo:                                             
-  +Date: 2020/12/12
-  +Time: 11-54-59
-  +Cost: 5.0
-  +Changed Amount: -23
+Balance: 1502.0
+History: 5
   -Type: Deposit
-  +TransferTo:                                             
-  +Date: 2020/12/12
-  +Time: 11-55-03
+  +TransferTo:          
+  +TranferFrom:          
+  +Date: 2020/12/15
+  +Time: 09:56:49
   +Cost: 0.0
-  +Changed Amount: +322
+  +Changed Amount: +232
+  -Type: Deposit
+  +TransferTo:          
+  +TranferFrom:          
+  +Date: 2020/12/15
+  +Time: 09:56:52
+  +Cost: 0.0
+  +Changed Amount: +32
   -Type: WithDraw
-  +TransferTo:                                             _
-  +Date: 2020/12/12
-  +Time: 11-57-01
+  +TransferTo:         
+  +TranferFrom:         
+  +Date: 2020/12/15
+  +Time: 09:57:18
   +Cost: 5.0
   +Changed Amount: -23
   -Type: WithDraw
-  +TransferTo:                                             
-  +Date: 2020/12/12
-  +Time: 11-57-45
+  +TransferTo:         
+  +TranferFrom:         
+  +Date: 2020/12/15
+  +Time: 09:57:21
   +Cost: 5.0
-  +Changed Amount: -23
+  +Changed Amount: -123
+  -Type: Receive Money
+  +TransferTo:       
+  +TranferFrom:       q
+  +Date: 2020/12/15
+  +Time: 15:09:34
+  +Cost: 0.0
+  +Changed Amount: +1213
+Current Account 
+Account No: 1
+Password: q
+User name: q
+Email: q
+Phone number: q
+Address: q
+Occupation: q
+Sex: Male
+Birthday: 1900/1/1
+Balance: 21948.0
+History: 3
+  -Type: Deposit
+  +TransferTo:        
+  +TranferFrom:        
+  +Date: 2020/12/15
+  +Time: 14:20:53
+  +Cost: 0.0
+  +Changed Amount: +23232
+  -Type: Transfer Money
+  +TransferTo:        a
+  +TranferFrom:        
+  +Date: 2020/12/15
+  +Time: 14:20:59
+  +Cost: 2.0
+  +Changed Amount: -121
+  -Type: Transfer Money
+  +TransferTo:       a
+  +TranferFrom:       
+  +Date: 2020/12/15
+  +Time: 15:09:34
+  +Cost: 2.0
+  +Changed Amount: -1213

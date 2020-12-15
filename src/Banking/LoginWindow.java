@@ -33,6 +33,7 @@ public class LoginWindow extends JFrame {
 		new LoginWindow();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+			
 				try {
 					LoginWindow frame = new LoginWindow();
 					frame.setVisible(true);
@@ -45,9 +46,7 @@ public class LoginWindow extends JFrame {
 	public LoginWindow() {
 		this.addWindowListener(new WindowAdapter() {
 		});
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		setTitle("Log in Window");
 		setBounds(100, 100, 785, 387);
 		contentPane = new JPanel();

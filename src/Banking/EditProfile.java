@@ -2,7 +2,6 @@ package Banking;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -13,6 +12,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class EditProfile extends JFrame {
@@ -40,11 +42,14 @@ public class EditProfile extends JFrame {
 	JButton btnNewButton = new JButton("OK");
 	private JTextField phonetxt;
 	public EditProfile(Account acc) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dobin\\OneDrive\\Desktop\\OOP\\image\\icons8-edit-file-16.png"));
 		generateDate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 855, 621);
+		setBounds(400, 100, 772, 621);
+		setTitle("Edit Profile");
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(135, 206, 235));
+		contentPane.setBorder(new LineBorder(new Color(128, 128, 128), 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

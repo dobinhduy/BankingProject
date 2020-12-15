@@ -240,7 +240,6 @@ public class SignUpWindow  implements MatchAble   {
 	void createAccount() {
 		String password =String.valueOf(passwordtxt.getPassword());
 		his=new History();
-		int accNo = 1;
 		String sex;
 		String day = yearBox.getSelectedItem().toString() +'/'+ monthBox.getSelectedItem().toString() + '/' + dayBox.getSelectedItem().toString();
 		Account acc;
@@ -251,16 +250,16 @@ public class SignUpWindow  implements MatchAble   {
 			sex= "Female";
 		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), addtxt.getText(), jobtxt.getText(), sex, day);
 		    	   if(comboBox.getSelectedIndex()==0) {
-		    		   acc=new SavingAccount(accNo,password, 50.0, user,his);
+		    		   acc=new SavingAccount(db.listofacc.size(),password, 50.0, user,his);
 		    		   	db.addAccount(acc);	                
 		    		   	db.saveData();
 		    	   			}
 		    	   else {
-		    		   acc= new CurrentAccount(accNo, password, 50.0, user,his);
+		    		   acc= new CurrentAccount(db.listofacc.size(), password, 50.0, user,his);
 		    		   db.addAccount(acc);	    		
 		    		   db.saveData();
 		    	   	}
-		    	   accNo++;
+	
 		    	   }
 	
 	void generateDate()

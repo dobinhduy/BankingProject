@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>AccountList1.txt</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/AccountList1.txt</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
