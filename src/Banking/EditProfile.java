@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -37,11 +39,15 @@ public class EditProfile extends JFrame {
 	JLabel lblNewLabel_3 = new JLabel("Occupation");
 	JLabel lblNewLabel_2 = new JLabel("Email");
 	JButton btnNewButton_1 = new JButton("Cancel");
+	JLabel lblNewLabel_6 = new JLabel("Phone");
 	JLabel UserName = new JLabel("");
 	
 	JButton btnNewButton = new JButton("OK");
 	private JTextField phonetxt;
 	public EditProfile(Account acc) {
+		Integer year = Integer.parseInt(acc.user.getBirthdate().split("/")[0]);
+		Integer month = Integer.parseInt(acc.user.getBirthdate().split("/")[1]);
+		Integer day = Integer.parseInt(acc.user.getBirthdate().split("/")[2]);		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dobin\\OneDrive\\Desktop\\OOP\\image\\icons8-edit-file-16.png"));
 		generateDate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,12 +80,16 @@ public class EditProfile extends JFrame {
 		
 		dayBox.setBounds(308, 197, 39, 21);
 		contentPane.add(dayBox);
+		dayBox.setSelectedIndex(day-1);
 		
 		monthBox.setBounds(384, 197, 45, 21);
 		contentPane.add(monthBox);
+		monthBox.setSelectedIndex(month-1);
+		yearBox.setSelectedIndex(0);
 		
 		yearBox.setBounds(477, 197, 81, 21);
 		contentPane.add(yearBox);
+		yearBox.setSelectedIndex(year-1900);
 	
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_4.setBounds(137, 137, 66, 24);
@@ -89,13 +99,17 @@ public class EditProfile extends JFrame {
 		MaleButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		MaleButton.setBounds(308, 140, 103, 21);
 		contentPane.add(MaleButton);
-	    
 		
 		FemaleButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		FemaleButton.setBounds(429, 140, 103, 21);
 		contentPane.add(FemaleButton);
+		if(acc.user.getSex().equals("Male")) {
+			MaleButton.setSelected(true);	
+		}
+		else 
+			FemaleButton.setSelected(true);
 		
-		emailTxt = new JTextField();
+		emailTxt = new JTextField(acc.user.getEmail());
 		emailTxt.setFont(new Font("Tahoma", Font.BOLD, 13));
 		emailTxt.setBounds(308, 248, 250, 26);
 		contentPane.add(emailTxt);
@@ -105,7 +119,8 @@ public class EditProfile extends JFrame {
 		lblNewLabel_5.setBounds(137, 312, 66, 24);
 		contentPane.add(lblNewLabel_5);
 		
-		addressTxt = new JTextField();
+		addressTxt = new JTextField(acc.user.getAddress());
+		addressTxt.setFont(new Font("Tahoma", Font.BOLD, 13));
 		addressTxt.setBounds(308, 312, 250, 23);
 		contentPane.add(addressTxt);
 		addressTxt.setColumns(10);
@@ -114,7 +129,8 @@ public class EditProfile extends JFrame {
 		lblNewLabel_3.setBounds(137, 371, 81, 24);
 		contentPane.add(lblNewLabel_3);
 		
-		OccpationTxt = new JTextField();
+		OccpationTxt = new JTextField(acc.user.getOccupation());
+		OccpationTxt.setFont(new Font("Tahoma", Font.BOLD, 13));
 		OccpationTxt.setBounds(308, 370, 250, 24);
 		contentPane.add(OccpationTxt);
 		OccpationTxt.setColumns(10);
@@ -168,12 +184,29 @@ public class EditProfile extends JFrame {
 		btnNewButton_1.setBounds(447, 509, 85, 30);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel_6 = new JLabel("Phone");
+		FemaleButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(MaleButton.isSelected() && FemaleButton.isSelected()) {
+					MaleButton.setSelected(false);
+				}
+			}
+		});
+		MaleButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(FemaleButton.isSelected() && MaleButton.isSelected()) {
+					FemaleButton.setSelected(false);
+				}
+			}
+		});
+		
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_6.setBounds(137, 436, 81, 30);
 		contentPane.add(lblNewLabel_6);
 		
-		phonetxt = new JTextField();
+		phonetxt = new JTextField(acc.user.getPhoneNo());
+		phonetxt.setFont(new Font("Tahoma", Font.BOLD, 13));
 		phonetxt.setBounds(308, 436, 250, 26);
 		contentPane.add(phonetxt);
 		phonetxt.setColumns(10);

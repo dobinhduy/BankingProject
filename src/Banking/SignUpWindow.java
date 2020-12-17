@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JRadioButton;
@@ -16,7 +17,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class SignUpWindow  implements MatchAble   {
@@ -44,8 +48,10 @@ public class SignUpWindow  implements MatchAble   {
 	JLabel lblNewLabel_3 = new JLabel("Phone No");
 	JLabel BirthDay = new JLabel("BirthDay");
 	JLabel lblNewLabel_4 = new JLabel("Occupation");
-	JLabel lblNewLabel_5 = new JLabel("Conform Password");
+	JLabel lblNewLabel_5 = new JLabel("Confirm Password");
 	JLabel lblNewLabel_6 = new JLabel("Address");
+	JLabel comfirmLable = new JLabel("");
+	JLabel lblNewLabel_7 = new JLabel("Account Type");
 	
 	JButton btnNewButton_1 = new JButton("Create new account",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-ok-16.png"));
 	JButton backBt = new JButton("Back",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\back.png"));
@@ -56,7 +62,6 @@ public class SignUpWindow  implements MatchAble   {
 	private JPasswordField passwordtxt;
 	private JPasswordField conformtxt;
 	History his ;
-	
 	public SignUpWindow() {
 		initialize();
 		this.frame.setVisible(true);
@@ -66,6 +71,8 @@ public class SignUpWindow  implements MatchAble   {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 228, 196));
+		frame.getContentPane().setForeground(new Color(255, 255, 255));
 		frame.setBounds(100, 40, 952, 771);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -85,11 +92,28 @@ public class SignUpWindow  implements MatchAble   {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		sexMale = new JRadioButton("Male");
+		sexMale.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(sexFemale.isSelected() && sexMale.isSelected()) {
+					sexFemale.setSelected(false);
+				}
+			}
+		});
+
 		sexMale.setFont(new Font("Tahoma", Font.BOLD, 13));
 		sexMale.setBounds(603, 179, 103, 21);
 		frame.getContentPane().add(sexMale);
 		
 		sexFemale = new JRadioButton("Female");
+		sexFemale.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(sexMale.isSelected() && sexFemale.isSelected()) {
+					sexMale.setSelected(false);
+				}
+			}
+		});
 		sexFemale.setFont(new Font("Tahoma", Font.BOLD, 13));
 		sexFemale.setBounds(716, 179, 103, 21);
 		frame.getContentPane().add(sexFemale);
@@ -149,7 +173,7 @@ public class SignUpWindow  implements MatchAble   {
 		
 		
 		BirthDay.setFont(new Font("Tahoma", Font.BOLD, 13));
-		BirthDay.setBounds(92, 182, 73, 34);
+		BirthDay.setBounds(92, 172, 73, 34);
 		frame.getContentPane().add(BirthDay);
 		
 		passwordtxt = new JPasswordField();
@@ -157,6 +181,20 @@ public class SignUpWindow  implements MatchAble   {
 		frame.getContentPane().add(passwordtxt);
 		
 		conformtxt = new JPasswordField();
+		conformtxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String password =String.valueOf(passwordtxt.getPassword());
+				String comfirm =String.valueOf(conformtxt.getPassword());
+				if(password.equals(comfirm)) {
+					comfirmLable.setText("Correct password");
+					comfirmLable.setForeground(Color.green);
+				}
+				else {
+					comfirmLable.setText("Incorrect password");
+				    comfirmLable.setForeground(Color.red);
+			}}
+		});
 		conformtxt.setBounds(251, 289, 314, 29);
 		frame.getContentPane().add(conformtxt);
 		
@@ -174,7 +212,7 @@ public class SignUpWindow  implements MatchAble   {
 		backBt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				frame.dispose();				
+				frame.dispose();
 				LoginWindow frame =new LoginWindow();
 				new LoginWindow();
 				frame.setVisible(true);
@@ -184,10 +222,14 @@ public class SignUpWindow  implements MatchAble   {
 		backBt.setBounds(251, 614, 103, 21);
 		frame.getContentPane().add(backBt);
 		
-		JLabel lblNewLabel_7 = new JLabel("Account Type");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_7.setBounds(92, 538, 122, 20);
 		frame.getContentPane().add(lblNewLabel_7);
+		comfirmLable.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		
+		
+		comfirmLable.setBounds(626, 290, 170, 23);
+		frame.getContentPane().add(comfirmLable);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkfill()) {	

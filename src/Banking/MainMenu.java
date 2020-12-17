@@ -63,7 +63,6 @@ public class MainMenu extends JFrame implements MatchAble {
 	JPanel center = new JPanel();
 	private final JLabel lblNewLabel = new JLabel("            ");
 	private final JButton currentBalance = new JButton("Current Balance");
-
 	public MainMenu(Account acc) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dobin\\OneDrive\\Desktop\\OOP\\image\\banking.png"));
 		this.ac=acc;
@@ -148,7 +147,7 @@ public class MainMenu extends JFrame implements MatchAble {
 			}
 		});
 		
-			tranferMoney.setFont(new Font("Tahoma", Font.BOLD, 13));
+		tranferMoney.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel_3.add(tranferMoney);
 		    changePin.setHorizontalAlignment(SwingConstants.LEFT);
 		    changePin.setBackground(new Color(60, 179, 113));
@@ -380,7 +379,7 @@ public class MainMenu extends JFrame implements MatchAble {
 		center.setBorder(new EmptyBorder(160, 180, 160, 250));
 		center.setLayout(new GridLayout(0,2,150,0));
 		center.add(new JLabel("Available Amount"));
-		center.add(new JLabel(""+ac.getBalance()));
+		center.add(new JLabel(""+ac.getBalance()+" dollars"));
 		center.add(new JLabel());
 		center.add(new JLabel());
 		center.add(new JLabel());
@@ -413,7 +412,7 @@ public class MainMenu extends JFrame implements MatchAble {
 	}
 	protected void paineChangePin() {
 		panelClear();
-		center.setBorder(new EmptyBorder(100, 180, 30,200));
+		center.setBorder(new EmptyBorder(70, 180, 20,200));
 		center.setLayout(new GridLayout(4, 3, 20, 70));
 		center.add(new JLabel("Current Password: "));
 		center.add(oldP);

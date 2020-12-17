@@ -93,15 +93,16 @@ public class Database {
 				String numTrans=   bf.readLine().split(": ")[1];
 				for(int i=0; i< Integer.parseInt(numTrans);i++) {
 					String typeH= bf.readLine().split(": ")[1];
-					String transTo =bf.readLine().split(": ")[1];
-					String transFrom=bf.readLine().split(": ")[1];
+					String  transTo =bf.readLine().split(": ")[1];
+					transTo=transTo.replace(" ", "");
+					String transFrom =bf.readLine().split(": ")[1];
+					transFrom=transFrom.replace(" ", "");
 					String dateH =bf.readLine().split(": ")[1];
 					String time = bf.readLine().split(": ")[1];
 					String cost = bf.readLine().split(": ")[1];
 					String change= bf.readLine().split(": ")[1];
 					his.addTranlist(new Transaction(typeH,transTo,transFrom, dateH, time, Double.parseDouble(cost), change));
 				}
-			
 				if(type.equals(Account.SAVINGS_ACCOUNT)){				
 					acc = new SavingAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
 									,address, occ, sex, dOb),his);

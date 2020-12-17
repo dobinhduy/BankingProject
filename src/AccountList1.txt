@@ -8,43 +8,36 @@ Address: a
 Occupation: a
 Sex: Male
 Birthday: 1900/1/1
-Balance: 1502.0
-History: 5
+Balance: 3571.0
+History: 4
   -Type: Deposit
-  +TransferTo:                              
-  +TranferFrom:                              
-  +Date: 2020/12/15
-  +Time: 09:56:49
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/17
+  +Time: 00:33:24
   +Cost: 0.0
-  +Changed Amount: +232
+  +Changed Amount: +1212
+  -Type: WithDraw
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/17
+  +Time: 00:35:02
+  +Cost: 5.0
+  +Changed Amount: -32
   -Type: Deposit
-  +TransferTo:                              
-  +TranferFrom:                              
-  +Date: 2020/12/15
-  +Time: 09:56:52
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/17
+  +Time: 00:35:06
   +Cost: 0.0
-  +Changed Amount: +32
-  -Type: WithDraw
-  +TransferTo:                             
-  +TranferFrom:                             
-  +Date: 2020/12/15
-  +Time: 09:57:18
-  +Cost: 5.0
-  +Changed Amount: -23
-  -Type: WithDraw
-  +TransferTo:                             
-  +TranferFrom:                             
-  +Date: 2020/12/15
-  +Time: 09:57:21
-  +Cost: 5.0
-  +Changed Amount: -123
-  -Type: Receive Money
-  +TransferTo:                           
-  +TranferFrom:                           q
-  +Date: 2020/12/15
-  +Time: 15:09:34
+  +Changed Amount: +23
+  -Type: Deposit
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/17
+  +Time: 00:35:08
   +Cost: 0.0
-  +Changed Amount: +1213
+  +Changed Amount: +2323
 Current Account 
 Account No: 1
 Password: q
@@ -54,27 +47,6 @@ Phone number: q
 Address: q
 Occupation: q
 Sex: Male
-Birthday: 1900/1/1
-Balance: 21948.0
-History: 3
-  -Type: Deposit
-  +TransferTo:                            
-  +TranferFrom:                            
-  +Date: 2020/12/15
-  +Time: 14:20:53
-  +Cost: 0.0
-  +Changed Amount: +23232
-  -Type: Transfer Money
-  +TransferTo:                            a
-  +TranferFrom:                            
-  +Date: 2020/12/15
-  +Time: 14:20:59
-  +Cost: 2.0
-  +Changed Amount: -121
-  -Type: Transfer Money
-  +TransferTo:                           a
-  +TranferFrom:                           
-  +Date: 2020/12/15
-  +Time: 15:09:34
-  +Cost: 2.0
-  +Changed Amount: -1213
+Birthday: 1903/4/5
+Balance: 50.0
+History: 0

@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends JFrame {
@@ -92,9 +94,9 @@ public class LoginWindow extends JFrame {
 		panel.add(signin);
 			login.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-						Account acc;
+					Account acc;
 					if(isFill()) {
-						if((acc=bd.getAccount(Usernametxt.getText(), new String(pass.getPassword())) ) !=null) {							
+						if((acc=bd.getAccount(Usernametxt.getText(), new String(pass.getPassword()))) !=null) {							
 							dispose();
 							MainMenu ac=new MainMenu(acc);
 							ac.setVisible(true);
@@ -114,6 +116,29 @@ public class LoginWindow extends JFrame {
 		panel.add(login);
 		
 		pass = new JPasswordField();
+		pass.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
+					Account acc;
+					if(isFill()) {
+						if((acc=bd.getAccount(Usernametxt.getText(), new String(pass.getPassword()))) !=null) {							
+							dispose();
+							MainMenu ac=new MainMenu(acc);
+							ac.setVisible(true);
+							}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Account is not correct", "Login False",JOptionPane.ERROR_MESSAGE);
+						}}
+					else
+						JOptionPane.showMessageDialog(null, "Input log in imformation!!","Error",JOptionPane.ERROR_MESSAGE);
+					
+				
+				
+				}
+			}
+		});
 		pass.setFont(new Font("Tahoma", Font.BOLD, 13));
 		pass.setBounds(88, 185, 256, 29);
 		panel.add(pass);
