@@ -182,7 +182,7 @@ public class MainMenu extends JFrame implements MatchAble {
 			
 		JPanel panel1 = new JPanel();
 		panel1.setBorder(new LineBorder(new Color(210, 105, 30), 3));
-		panel1.setBackground(new Color(135, 206, 235));
+		panel1.setBackground(new Color(30, 144, 255));
 		getContentPane().add(panel1, BorderLayout.NORTH);
 		panel1.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 40));
 		

@@ -2,13 +2,10 @@ package Banking;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -21,6 +18,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 
 
 public class SignUpWindow  implements MatchAble   {
@@ -177,6 +175,7 @@ public class SignUpWindow  implements MatchAble   {
 		frame.getContentPane().add(BirthDay);
 		
 		passwordtxt = new JPasswordField();
+		passwordtxt.setToolTipText("Password must be contains:"+"\n"+ "more than 8 characters\r\n+ at least one UPPER character  \r\n+ at least one LOWER character\r\n+ at least one digit\r\nEX: Duy12345\r\n");
 		passwordtxt.setBounds(251, 232, 314, 29);
 		frame.getContentPane().add(passwordtxt);
 		
@@ -285,12 +284,14 @@ public class SignUpWindow  implements MatchAble   {
 		String sex;
 		String day = yearBox.getSelectedItem().toString() +'/'+ monthBox.getSelectedItem().toString() + '/' + dayBox.getSelectedItem().toString();
 		Account acc;
+		LocalDate now =LocalDate.now();
+		
 		if(sexMale.isSelected()) {
 			sex= "Male";		
 		}	
 		else 
 			sex= "Female";
-		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), addtxt.getText(), jobtxt.getText(), sex, day);
+		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), addtxt.getText(), jobtxt.getText(), sex, day,""+now);
 		    	   if(comboBox.getSelectedIndex()==0) {
 		    		   acc=new SavingAccount(db.listofacc.size(),password, 50.0, user,his);
 		    		   	db.addAccount(acc);	                

@@ -1,43 +1,16 @@
 Current Account 
 Account No: 0
-Password: a
+Password: aa
 User name: a
-Email: a
+Email: aa
 Phone number: a
 Address: a
 Occupation: a
 Sex: Male
-Birthday: 1900/1/1
-Balance: 3571.0
-History: 4
-  -Type: Deposit
-  +TransferTo:  
-  +TranferFrom:  
-  +Date: 2020/12/17
-  +Time: 00:33:24
-  +Cost: 0.0
-  +Changed Amount: +1212
-  -Type: WithDraw
-  +TransferTo:  
-  +TranferFrom:  
-  +Date: 2020/12/17
-  +Time: 00:35:02
-  +Cost: 5.0
-  +Changed Amount: -32
-  -Type: Deposit
-  +TransferTo:  
-  +TranferFrom:  
-  +Date: 2020/12/17
-  +Time: 00:35:06
-  +Cost: 0.0
-  +Changed Amount: +23
-  -Type: Deposit
-  +TransferTo:  
-  +TranferFrom:  
-  +Date: 2020/12/17
-  +Time: 00:35:08
-  +Cost: 0.0
-  +Changed Amount: +2323
+Birthday: 1903/4/1
+Create Day: 2020-12-22
+Balance: 50.0
+History: 0
 Current Account 
 Account No: 1
 Password: q
@@ -47,6 +20,7 @@ Phone number: q
 Address: q
 Occupation: q
 Sex: Male
-Birthday: 1903/4/5
+Birthday: 1900/1/1
+Create Day: 2020-12-22
 Balance: 50.0
 History: 0

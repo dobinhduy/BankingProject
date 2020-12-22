@@ -1,7 +1,6 @@
 package Banking;
 
 
-
 public class UserInformation
 {
 	String userName;
@@ -11,10 +10,12 @@ public class UserInformation
 	String occupation;
 	String sex;
 	String birthdate;
+	String createDay;
     
 	public UserInformation(String username, String email, String phoneNo, String address,
-			String occupation, String sex, String birthdate)
+			String occupation, String sex, String birthdate,String crD)
 	{
+		
 		this.userName=username;
 		this.email = email;
 		this.phoneNo = phoneNo;
@@ -22,6 +23,7 @@ public class UserInformation
 		this.occupation = occupation;
 		this.sex = sex;
 		this.birthdate = birthdate;
+		this.createDay=crD;
 	} 
 	
 	public String getUserName() {
@@ -64,6 +66,14 @@ public class UserInformation
 		this.occupation = occupation;
 	}
 
+	public String getCreateDay() {
+		return createDay;
+	}
+
+	public void setCreateDay(String createDay) {
+		this.createDay = createDay;
+	}
+
 	public String getSex() {
 		return sex;
 	}
@@ -85,7 +95,7 @@ public class UserInformation
 		return  "User name: " + userName + "\n" + "Email: " +email + "\n"
 				+"Phone number: " + phoneNo + "\n" +"Address: "+ address + "\n" +
 				"Occupation: " + occupation + "\n" +"Sex: " + sex
-				+ "\n" + "Birthday: " +birthdate;
+				+ "\n" + "Birthday: " +birthdate+ "\n"+ "Create Day: "+ createDay ;
 	}
 	
 	

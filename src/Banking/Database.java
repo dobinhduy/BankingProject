@@ -89,6 +89,7 @@ public class Database {
 				String occ = bf.readLine().split(": ")[1];
 				String sex = bf.readLine().split(": ")[1];
 				String dOb = bf.readLine().split(": ")[1];
+				String createdD=bf.readLine().split(": ")[1];
 				String balance = bf.readLine().split(": ")[1];
 				String numTrans=   bf.readLine().split(": ")[1];
 				for(int i=0; i< Integer.parseInt(numTrans);i++) {
@@ -105,12 +106,12 @@ public class Database {
 				}
 				if(type.equals(Account.SAVINGS_ACCOUNT)){				
 					acc = new SavingAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
-									,address, occ, sex, dOb),his);
+									,address, occ, sex, dOb,createdD),his);
 					
 				}
 				else {
 					acc = new CurrentAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
-							,address, occ, sex, dOb),his);
+							,address, occ, sex, dOb,createdD),his);
 					
 				}
 				addAccount(acc);
