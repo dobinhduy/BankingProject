@@ -72,12 +72,12 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-	@SuppressWarnings("unlikely-arg-type")
+	@SuppressWarnings("unused")
 	private void loadData() {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(new  File("D:\\Code\\BankingOOP\\BankingProject\\src\\AccountList1.txt")));
-			String type;		
-			while((type=bf.readLine()) != null) {
+			String type;
+			while((type=bf.readLine()) != null) {				
 				History his=new History();
 				Account acc;
 				String accNo = bf.readLine().split(": ")[1];
@@ -90,6 +90,9 @@ public class Database {
 				String sex = bf.readLine().split(": ")[1];
 				String dOb = bf.readLine().split(": ")[1];
 				String createdD=bf.readLine().split(": ")[1];
+			    String numPer= bf.readLine().split(": ")[1];
+			    Double totalDeposit=Double.parseDouble(bf.readLine().split(": ")[1]);
+			    Double totalWithandTr=Double.parseDouble(bf.readLine().split(": ")[1]);
 				String balance = bf.readLine().split(": ")[1];
 				String numTrans=   bf.readLine().split(": ")[1];
 				for(int i=0; i< Integer.parseInt(numTrans);i++) {
@@ -104,14 +107,16 @@ public class Database {
 					String change= bf.readLine().split(": ")[1];
 					his.addTranlist(new Transaction(typeH,transTo,transFrom, dateH, time, Double.parseDouble(cost), change));
 				}
-				if(type.equals(Account.SAVINGS_ACCOUNT)){				
+				    String space1 =bf.readLine();	
+				    String space2 =bf.readLine();	
+				if(type.equals("Saving Account ")){				
 					acc = new SavingAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
-									,address, occ, sex, dOb,createdD),his);
+									,address, occ, sex, dOb,createdD,numPer,totalDeposit,totalWithandTr),his);
 					
 				}
 				else {
 					acc = new CurrentAccount(Integer.parseInt(accNo), pin,Double.parseDouble(balance), new UserInformation(userName,email,phoneNumber
-							,address, occ, sex, dOb,createdD),his);
+							,address, occ, sex, dOb,createdD,numPer,totalDeposit,totalWithandTr),his);
 					
 				}
 				addAccount(acc);

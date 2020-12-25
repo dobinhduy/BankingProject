@@ -14,14 +14,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-
 import javax.swing.JScrollPane;
 import java.awt.Toolkit;
 
@@ -59,6 +60,7 @@ public class MainMenu extends JFrame implements MatchAble {
 	JButton viewHistory =new JButton("View History",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\eye.png") );
 	
 	JLabel time = new JLabel(" ");
+	JLabel lblNewLabel_1 = new JLabel(new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\schedule.png"));
 	JScrollPane scrollPane = new JScrollPane();
 	JPanel center = new JPanel();
 	private final JLabel lblNewLabel = new JLabel("            ");
@@ -67,6 +69,7 @@ public class MainMenu extends JFrame implements MatchAble {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dobin\\OneDrive\\Desktop\\OOP\\image\\banking.png"));
 		this.ac=acc;
 		statTime();
+		System.out.println(ac.getAccountType());
 		this.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we)
 			{
@@ -81,7 +84,6 @@ public class MainMenu extends JFrame implements MatchAble {
 		JPanel central = new JPanel();
 		getContentPane().add(central, BorderLayout.CENTER);
 		central.setLayout(new BorderLayout(0, 50));
-		
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setForeground(Color.WHITE);
@@ -186,7 +188,7 @@ public class MainMenu extends JFrame implements MatchAble {
 		getContentPane().add(panel1, BorderLayout.NORTH);
 		panel1.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 40));
 		
-		JLabel lblNewLabel_1 = new JLabel(new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\schedule.png"));
+		
 		panel1.add(lblNewLabel_1);
 		
 		
@@ -267,11 +269,13 @@ public class MainMenu extends JFrame implements MatchAble {
 				if(!depositMoney.getText().isEmpty()) {
 				if(isNumeric(depositMoney.getText())) {
 					if(Double.parseDouble(depositMoney.getText())>= 10) {
-						ac.depositMoney(Double.parseDouble(depositMoney.getText()));
+						Double amount=Double.parseDouble(depositMoney.getText());
+						ac.depositMoney(amount);
+						ac.user.totalDepositOfMonth+=amount;
 			            JOptionPane.showMessageDialog(null, "Deposit Successues");
 			            String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 			            String a= timeStamp.split("_")[0];
-				    	 String b = timeStamp.split("_")[1];	
+				    	String b = timeStamp.split("_")[1];	
 			            ac.vhis.addTranlist(new Transaction("Deposit","","", a, b, 0.0, "+" + depositMoney.getText()));
 						paineDeposit();
 					}
@@ -292,14 +296,20 @@ public class MainMenu extends JFrame implements MatchAble {
 			public void actionPerformed(ActionEvent e) {
 				if(!withDrawtxt.getText().isEmpty()) {								
 				 if(isNumeric(withDrawtxt.getText())){
-				     if(ac.withdrawMoney(Double.parseDouble(withDrawtxt.getText()))== 1) 
+					System.out.println(ac.user.getTotalWithdrawAndTranfer() > 1000);
+					if(ac.user.getTotalWithdrawAndTranfer() > 1000) 
+					     JOptionPane.showMessageDialog(null, "Your reached the withdraw and tranfer limmit per month!!");	 
+					else { 
+					 Double amountWithdraw=Double.parseDouble(withDrawtxt.getText());
+				     if(ac.withdrawMoney(amountWithdraw)== 1) 
 				    	 JOptionPane.showMessageDialog(null, "Not enought balance");
-				     if(ac.withdrawMoney(Double.parseDouble(withDrawtxt.getText()))==2) 
+				     if(ac.withdrawMoney(amountWithdraw)==2) 
 				    	 JOptionPane.showMessageDialog(null, "Withdraw limit under 10 dollars");				     
-				     if(ac.withdrawMoney(Double.parseDouble(withDrawtxt.getText()))==3) 
+				     if(ac.withdrawMoney(amountWithdraw)==3) 
 				    	 JOptionPane.showMessageDialog(null, "Withdraw limit over 1000 dollars");				
-				     if(ac.withdrawMoney(Double.parseDouble(withDrawtxt.getText()))==4) {			    	
-				    	 ac.setBalance(ac.getBalance()-Double.parseDouble(withDrawtxt.getText())-5.0);
+				     if(ac.withdrawMoney(amountWithdraw)==4) {			    	
+				    	 ac.setBalance(ac.getBalance()-amountWithdraw-5.0);
+				    	 ac.user.totalWithdrawAndTranfer+=amountWithdraw;
 				    	 String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 				    	 String a= timeStamp.split("_")[0];
 				    	 String b = timeStamp.split("_")[1];	    	
@@ -307,7 +317,7 @@ public class MainMenu extends JFrame implements MatchAble {
 				    	 JOptionPane.showMessageDialog(null, "Withdraw Successful");
 				    	 painWithdraw();
 				     }
-				}
+				}}
 				else 
 					JOptionPane.showMessageDialog(null, "Amount should NOT contains characters");
 				
@@ -328,11 +338,11 @@ public class MainMenu extends JFrame implements MatchAble {
 				    	     String b = timeStamp.split("_")[1];	
 				    	     ac.vhis.addTranlist(new Transaction("Transfer Money", accounTransfer.getText(), "",a, b, 2.0, "-"+amountT.getText()));
 				    	     ac.setBalance(ac.getBalance()-2.0);
-				    	     JOptionPane.showMessageDialog(null, "Transfer successful");	
+				    	     ac.user.totalWithdrawAndTranfer+=Double.parseDouble(amountT.getText());
+				    	     JOptionPane.showMessageDialog(null, "Transfer successful");
 				    	     db.getAccount(accounTransfer.getText()).vhis.addTranlist(new Transaction("Receive Money", "", ac.user.getUserName(),
 				    	    		 a, b, 0.0	, "+"+amountT.getText()));
-				    	 }
-			    		    	    		  
+				    	 }	    	    		  
 			    	      else
 			    	    	  
 			    		    JOptionPane.showMessageDialog(null, "You do not have enought balance ");	    		   			    	   
@@ -372,6 +382,7 @@ public class MainMenu extends JFrame implements MatchAble {
 			        JOptionPane.showMessageDialog(null, "Please input the account name","Note",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
+		isIncrease();
 	}
 	
 	protected void painBalance() {
@@ -566,12 +577,41 @@ public class MainMenu extends JFrame implements MatchAble {
 	                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd  hh:mm:ss a");
 	                    time.setText(sdf.format(d));
 	                    Thread.sleep(1000);
-
 	                }
 
 	            } catch (Exception e) {
 	            }
 	        }
 	    }).start();
+	}
+	public void isIncrease() {
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+		String startDay = ac.user.getCreateDay();
+		try {
+			Date start =sdf.parse(startDay);
+		    Date now =new Date();
+			long perious = -start.getTime()+now.getTime();
+			long difference_In_Days=(perious/(1000*60*60*24)%365);
+			int numberofMonth =Integer.parseInt(ac.user.getPeriod());
+			if(ac.getAccountType()==1) {
+			   if(difference_In_Days +2> 1 +0*numberofMonth) {		
+				if(ac.user.getTotalDepositOfMonth()>1000) {
+				ac.user.setPeriod(""+(numberofMonth+1));
+				ac.setBalance(ac.getBalance()*1.1);
+				ac.user.setTotalDepositOfMonth(0.0);
+				JOptionPane.showMessageDialog(null, "Your balance is increase 10%","Annoument" ,JOptionPane.INFORMATION_MESSAGE);
+			                                      }
+				else {
+					JOptionPane.showMessageDialog(null, "Your monthly deposit is not greater than 1000 dollars");
+					ac.user.setTotalDepositOfMonth(0.0);
+					ac.setBalance(ac.getBalance()-10);
+				}
+			}}
+			
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

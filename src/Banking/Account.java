@@ -74,13 +74,12 @@ public abstract class Account
 	{
 		if(balance-amount<minBalance)
 			return false;
-		
 		this.balance-=amount;
 		ac.balance+=amount;
 		return true;	
 	}
 	
-	
+    
 	Double withdrawMoney(double amount)
 	{
 		if(amount<minWithdrawal)
@@ -95,9 +94,9 @@ public abstract class Account
 		public String toString()
 		{   if(getAccountType()==1) {
 			return "Saving Account " + "\n"+ "Account No: " + accountNo + "\n" +"Password: " + password + "\n" +
-					     user + "\n"+"Balance: " + balance + "\n" + "History: "+vhis.getSize()+"\n"+ vhis.toString();
+					     user + "\n"+"Balance: " + balance + "\n" + "History: "+vhis.getSize()+"\n"+ vhis.toString()+"\n"+"---------------------"+"\n";
 		}
 			return "Current Account " + "\n"+ "Account No: " + accountNo + "\n" +"Password: " + password + "\n"+
-		                user + "\n" +"Balance: " + balance + "\n"+  "History: "+vhis.getSize()+"\n"+ vhis.toString() ;
+		                user + "\n" +"Balance: " + balance + "\n"+  "History: "+vhis.getSize()+"\n"+ vhis.toString()+"\n"+"---------------------"+"\n";
 		}
 	}

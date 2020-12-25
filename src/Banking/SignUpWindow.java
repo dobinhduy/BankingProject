@@ -118,7 +118,7 @@ public class SignUpWindow  implements MatchAble   {
 		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Savings Account\t", "Current  Account"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Savings Account", "Current  Account"}));
 		comboBox.setSelectedIndex(0);
 		comboBox.setBounds(251, 529, 314, 29);
 		frame.getContentPane().add(comboBox);
@@ -291,7 +291,9 @@ public class SignUpWindow  implements MatchAble   {
 		}	
 		else 
 			sex= "Female";
-		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), addtxt.getText(), jobtxt.getText(), sex, day,""+now);
+		
+		UserInformation user =new UserInformation(firstNametxt.getText(), emailtxt.getText(), phoneNotxt.getText(), 
+				                                  addtxt.getText(), jobtxt.getText(), sex, day,""+now,"0",0.0,0.0);
 		    	   if(comboBox.getSelectedIndex()==0) {
 		    		   acc=new SavingAccount(db.listofacc.size(),password, 50.0, user,his);
 		    		   	db.addAccount(acc);	                
@@ -301,9 +303,7 @@ public class SignUpWindow  implements MatchAble   {
 		    		   acc= new CurrentAccount(db.listofacc.size(), password, 50.0, user,his);
 		    		   db.addAccount(acc);	    		
 		    		   db.saveData();
-		    	   	}
-	
-		    	   }
+		    	   }}
 	
 	void generateDate()
 	{

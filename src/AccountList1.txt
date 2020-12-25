@@ -1,16 +1,56 @@
-Current Account 
+Saving Account 
 Account No: 0
-Password: aa
+Password: a
 User name: a
-Email: aa
+Email: a
 Phone number: a
 Address: a
 Occupation: a
 Sex: Male
-Birthday: 1903/4/1
-Create Day: 2020-12-22
-Balance: 50.0
-History: 0
+Birthday: 1900/1/1
+Create Day: 2020-12-24
+Number of created Month: 1
+TotalDepositOfMonth: 1.3131313E7
+TotalWithdrawandTranOfMonth: 1395.0
+Balance: 1.44631191E7
+History: 5
+  -Type: Deposit
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/24
+  +Time: 21:18:14
+  +Cost: 0.0
+  +Changed Amount: +1212131 
+  -Type: WithDraw
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/24
+  +Time: 21:18:18
+  +Cost: 5.0
+  +Changed Amount: -100  
+  -Type: WithDraw
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/24
+  +Time: 21:18:22
+  +Cost: 5.0
+  +Changed Amount: -296  
+  -Type: WithDraw
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/24
+  +Time: 21:18:26
+  +Cost: 5.0
+  +Changed Amount: -999
+  -Type: Deposit
+  +TransferTo:  
+  +TranferFrom:  
+  +Date: 2020/12/24
+  +Time: 21:27:41
+  +Cost: 0.0
+  +Changed Amount: +13131313
+
+---------------------
 Current Account 
 Account No: 1
 Password: q
@@ -21,6 +61,29 @@ Address: q
 Occupation: q
 Sex: Male
 Birthday: 1900/1/1
-Create Day: 2020-12-22
+Create Day: 2020-12-24
+Number of created Month: 0
+TotalDepositOfMonth: 0.0
+TotalWithdrawandTranOfMonth: 0.0
 Balance: 50.0
 History: 0
+
+---------------------
+Saving Account 
+Account No: 2
+Password: z
+User name: z
+Email: z
+Phone number: z
+Address: z
+Occupation: z
+Sex: Male
+Birthday: 1900/1/1
+Create Day: 2020-12-24
+Number of created Month: 0
+TotalDepositOfMonth: 0.0
+TotalWithdrawandTranOfMonth: 0.0
+Balance: 50.0
+History: 0
+
+---------------------

@@ -11,9 +11,11 @@ public class UserInformation
 	String sex;
 	String birthdate;
 	String createDay;
-    
+    String Period;
+    Double totalDepositOfMonth;
+    Double totalWithdrawAndTranfer;
 	public UserInformation(String username, String email, String phoneNo, String address,
-			String occupation, String sex, String birthdate,String crD)
+			String occupation, String sex, String birthdate,String crD,String peri,Double total,Double totalwithandtr)
 	{
 		
 		this.userName=username;
@@ -24,8 +26,36 @@ public class UserInformation
 		this.sex = sex;
 		this.birthdate = birthdate;
 		this.createDay=crD;
+		this.Period=peri;
+		this.totalDepositOfMonth=total;
+		this.totalWithdrawAndTranfer=totalwithandtr;
 	} 
 	
+	public Double getTotalDepositOfMonth() {
+		return totalDepositOfMonth;
+	}
+
+	public void setTotalDepositOfMonth(Double totalDepositOfMonth) {
+		this.totalDepositOfMonth = totalDepositOfMonth;
+	}
+
+	public String getPeriod() {
+		return Period;
+	}
+	
+
+	public Double getTotalWithdrawAndTranfer() {
+		return totalWithdrawAndTranfer;
+	}
+
+	public void setTotalWithdrawAndTranfer(Double totalWithdrawAndTranfer) {
+		this.totalWithdrawAndTranfer = totalWithdrawAndTranfer;
+	}
+
+	public void setPeriod(String period) {
+		Period = period;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -95,7 +125,9 @@ public class UserInformation
 		return  "User name: " + userName + "\n" + "Email: " +email + "\n"
 				+"Phone number: " + phoneNo + "\n" +"Address: "+ address + "\n" +
 				"Occupation: " + occupation + "\n" +"Sex: " + sex
-				+ "\n" + "Birthday: " +birthdate+ "\n"+ "Create Day: "+ createDay ;
+				+ "\n" + "Birthday: " +birthdate+ "\n"+ "Create Day: "+ createDay +"\n" 
+				+ "Number of created Month: "+Period +"\n"+ "TotalDepositOfMonth: "+ totalDepositOfMonth
+				+"\n"+ "TotalWithdrawandTranOfMonth: "+ totalWithdrawAndTranfer;
 	}
 	
 	
