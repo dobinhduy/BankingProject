@@ -25,6 +25,7 @@ public class EditProfile extends JFrame {
 	private JTextField emailTxt;
 	private JTextField addressTxt;
 	private JTextField OccpationTxt;
+	private JTextField phonetxt;
 	
 	JComboBox<Integer> dayBox = new JComboBox<Integer>();
 	JComboBox<Integer> monthBox = new JComboBox<Integer>();
@@ -32,18 +33,20 @@ public class EditProfile extends JFrame {
 	
 	JRadioButton FemaleButton = new JRadioButton("Female");
 	JRadioButton MaleButton = new JRadioButton("Male");
+	
 	JLabel lblNewLabel = new JLabel("UserName");
 	JLabel lblNewLabel_1 = new JLabel("Birthday");
 	JLabel lblNewLabel_4 = new JLabel("Sex");
 	JLabel lblNewLabel_5 = new JLabel("Address");
 	JLabel lblNewLabel_3 = new JLabel("Occupation");
 	JLabel lblNewLabel_2 = new JLabel("Email");
-	JButton btnNewButton_1 = new JButton("Cancel");
 	JLabel lblNewLabel_6 = new JLabel("Phone");
 	JLabel UserName = new JLabel("");
 	
-	JButton btnNewButton = new JButton("OK");
-	private JTextField phonetxt;
+	JButton OKbuttom = new JButton("OK");
+	JButton CancelButtom = new JButton("Cancel");
+	
+	
 	public EditProfile(Account acc) {
 		Integer year = Integer.parseInt(acc.user.getBirthdate().split("/")[0]);
 		Integer month = Integer.parseInt(acc.user.getBirthdate().split("/")[1]);
@@ -134,17 +137,16 @@ public class EditProfile extends JFrame {
 		OccpationTxt.setBounds(308, 370, 250, 24);
 		contentPane.add(OccpationTxt);
 		OccpationTxt.setColumns(10);
-		btnNewButton.addActionListener(new ActionListener() {
+		OKbuttom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkfill()) {
-					if(!isSelectBoth()) {
 					String sex;
 					String day;
 					day= yearBox.getSelectedItem().toString()+ "/" + monthBox.getSelectedItem().toString()+"/"+dayBox.getSelectedItem().toString();
 					if(FemaleButton.isSelected()){
 						sex= "Female";
 					}
-					else
+					else{
 						sex="Male";
 					acc.user.setSex(sex);
 					acc.user.setBirthdate(day);
@@ -157,20 +159,18 @@ public class EditProfile extends JFrame {
 					MainMenu a=  new MainMenu(acc);
 					a.painUserDetail();
 					a.setVisible(true);
-				}
-					else 
-						JOptionPane.showMessageDialog(null, "Only select one sex!!");
-				}
+				}}
+				
 				else
 					JOptionPane.showMessageDialog(null, "Fill all","Error",JOptionPane.ERROR_MESSAGE);
-			}
-		});
+			
+			}});
 		
 		
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNewButton.setBounds(589, 509, 85, 30);
-		contentPane.add(btnNewButton);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		OKbuttom.setFont(new Font("Tahoma", Font.BOLD, 15));
+		OKbuttom.setBounds(589, 509, 85, 30);
+		contentPane.add(OKbuttom);
+		CancelButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				MainMenu menu =new MainMenu(acc);
@@ -180,9 +180,9 @@ public class EditProfile extends JFrame {
 			}
 		});
 		
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNewButton_1.setBounds(447, 509, 85, 30);
-		contentPane.add(btnNewButton_1);
+		CancelButtom.setFont(new Font("Tahoma", Font.BOLD, 15));
+		CancelButtom.setBounds(447, 509, 85, 30);
+		contentPane.add(CancelButtom);
 		
 		FemaleButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -221,12 +221,6 @@ public class EditProfile extends JFrame {
 			return false;
 		}
 		return true;
-	}
-	boolean isSelectBoth() {
-		if(MaleButton.isSelected() && FemaleButton.isSelected() ) {
-			return true;
-		}
-		return false;
 	}
 	
 	 void generateDate()

@@ -40,12 +40,10 @@ public  class ViewHistory extends JFrame {
 	Vector VecD =new Vector();
     @SuppressWarnings("rawtypes")
 	Vector VecE =new Vector();
-    @SuppressWarnings("rawtypes")
-	Vector VecF =new Vector();
+
     @SuppressWarnings("rawtypes")
 	Vector VecG =new Vector();
-    @SuppressWarnings("rawtypes")
-	Vector VecH =new Vector();
+
     
     
 	@SuppressWarnings("unchecked")
@@ -103,7 +101,7 @@ public  class ViewHistory extends JFrame {
 	    	    VecC.add(account.vhis.trans.get(i).getTimer());
 	    	    VecC.add(account.vhis.trans.get(i).getCost()+"");
 	    	    VecC.add(account.vhis.trans.get(i).getChangedAmount());
-	    	    VecH.add(VecC);
+	    	    VecB.add(VecC);
 	    	    count ++;
 	    	    }}
     
@@ -169,7 +167,7 @@ public  class ViewHistory extends JFrame {
 	    	    VecC.add(account.vhis.trans.get(i).getTimer());
 	    	    VecC.add(account.vhis.trans.get(i).getCost()+"");
 	    	    VecC.add(account.vhis.trans.get(i).getChangedAmount());
-	    	    VecF.add(VecC); 
+	    	    VecB.add(VecC); 
 	    	    count ++;
 	}}}
 
@@ -223,10 +221,10 @@ public  class ViewHistory extends JFrame {
 		scrollPane.setViewportView(table);
 
 		
-		JButton okButton = new JButton("BACK");
-		okButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		okButton.setBounds(756, 512, 85, 21);
-		contentPane.add(okButton);
+		JButton BackButtom = new JButton("BACK");
+		BackButtom.setFont(new Font("Tahoma", Font.BOLD, 15));
+		BackButtom.setBounds(756, 512, 85, 21);
+		contentPane.add(BackButtom);
 		
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"All", "Withdraw", "Deposit", "Transfer Money", "Receive Money"}));
 		comboBox.setBounds(517, 83, 168, 21);
@@ -241,58 +239,76 @@ public  class ViewHistory extends JFrame {
 		VectorE();
 		VectorG();
 		
-		JButton btnNewButton = new JButton("View");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton ViewButtom = new JButton("View");
+		ViewButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getSelectedIndex()==1) {
 					VecB.clear();
 					painWithdraw();	
+					if(VecB.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "You have no transaction");
+					}
+					else {				
 					dtm.setDataVector(VecB, VecA);		
 					table.setModel(dtm);
-					sort();
-			
+					}
 				 }
 				if(comboBox.getSelectedIndex()==2) {
 					VecB.clear();
 					painDeposit();
+					if(VecB.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "You have no transaction");
+					}
+					else {				
 					dtm.setDataVector(VecB, VecA);
 					table.setModel(dtm);
-					sort();
+					}
 				}
 				if(comboBox.getSelectedIndex()==3) {
-			        VecB.clear();
+					VecB.clear();
 					paineTranferTo();
+					if(VecB.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "You have no transaction");
+					}
+					else {
 					dtm.setDataVector(VecB, VecD);
 					table.setModel(dtm);
-					sort();
+					}
 				}
 				if(comboBox.getSelectedIndex()==4) {
-					VecF.clear();
+					VecB.clear();
 					painReceive();
-					dtm.setDataVector(VecF, VecE);
+					if(VecB.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "You have no transaction");
+					}
+					else {
+					
+					dtm.setDataVector(VecB, VecE);
 					table.setModel(dtm);
-					sort();
+					}
+				
 				}
 				if(comboBox.getSelectedIndex()==0) {
+					VecB.clear();
+					painAll();
 					if(account.vhis.getSize()==0) {
 						JOptionPane.showMessageDialog(null, "You have no transaction",null,JOptionPane.INFORMATION_MESSAGE);
 					}
-					else {
-					VecH.clear();
-					painAll();
-					dtm.setDataVector(VecH, VecG);
+					else {			
+					dtm.setDataVector(VecB, VecG);
 					table.setModel(dtm);
-					sort();
+				
 				}}
+				sort();
 				
 			}
 		});
 		
 	
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setBounds(719, 83, 85, 21);
-		contentPane.add(btnNewButton);
-	    okButton.addActionListener(new ActionListener() {
+		ViewButtom.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ViewButtom.setBounds(719, 83, 85, 21);
+		contentPane.add(ViewButtom);
+	    BackButtom.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

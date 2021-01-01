@@ -132,10 +132,7 @@ public class LoginWindow extends JFrame {
 							JOptionPane.showMessageDialog(null, "Account is not correct", "Login False",JOptionPane.ERROR_MESSAGE);
 						}}
 					else
-						JOptionPane.showMessageDialog(null, "Input log in imformation!!","Error",JOptionPane.ERROR_MESSAGE);
-					
-				
-				
+						JOptionPane.showMessageDialog(null, "Input log in imformation!!","Error",JOptionPane.ERROR_MESSAGE);				
 				}
 			}
 		});

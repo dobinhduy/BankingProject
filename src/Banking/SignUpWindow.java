@@ -50,6 +50,7 @@ public class SignUpWindow  implements MatchAble   {
 	JLabel lblNewLabel_6 = new JLabel("Address");
 	JLabel comfirmLable = new JLabel("");
 	JLabel lblNewLabel_7 = new JLabel("Account Type");
+	JLabel isvalid = new JLabel("");
 	
 	JButton btnNewButton_1 = new JButton("Create new account",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\icons8-ok-16.png"));
 	JButton backBt = new JButton("Back",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\back.png"));
@@ -175,6 +176,18 @@ public class SignUpWindow  implements MatchAble   {
 		frame.getContentPane().add(BirthDay);
 		
 		passwordtxt = new JPasswordField();
+		passwordtxt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(isPasswordValid()) {
+					isvalid.setText("Valid");
+				}
+				else {
+					isvalid.setText("Invalid");
+				}
+					
+			}
+		});
 		passwordtxt.setToolTipText("Password must be contains:"+"\n"+ "more than 8 characters\r\n+ at least one UPPER character  \r\n+ at least one LOWER character\r\n+ at least one digit\r\nEX: Duy12345\r\n");
 		passwordtxt.setBounds(251, 232, 314, 29);
 		frame.getContentPane().add(passwordtxt);
@@ -229,6 +242,11 @@ public class SignUpWindow  implements MatchAble   {
 		
 		comfirmLable.setBounds(626, 290, 170, 23);
 		frame.getContentPane().add(comfirmLable);
+		
+		
+		isvalid.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		isvalid.setBounds(626, 232, 59, 29);
+		frame.getContentPane().add(isvalid);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkfill()) {	
@@ -322,27 +340,27 @@ public class SignUpWindow  implements MatchAble   {
 	}
 	@Override
     public boolean isPasswordValid() {
-//    	int countUp=0;
-//    	int countLow=0;
-//    	int digit=0;
-//    	String a= new String(passwordtxt.getPassword());
-//    	if(a.length()>8) {
-//    		for(int i=0 ; i<a.length();i++) {
-//    			char c= a.charAt(i);
-//    			if(Character.isUpperCase(c))
-//    			countUp++;
-//    			if(Character.isLowerCase(c))
-//    			countLow++;
-//    			if(Character.isDigit(c))
-//    				digit++;
-//    		}
-//    		if(countLow>=1 && countUp>=1 && digit>=1 ) {
-//    			countLow=0;
-//    			countUp=0;
-//    			digit=0;
-//    			return true;
-//    		}}
-    	return true;
+    	int countUp=0;
+    	int countLow=0;
+    	int digit=0;
+    	String a= new String(passwordtxt.getPassword());
+    	if(a.length()>8) {
+    		for(int i=0 ; i<a.length();i++) {
+    			char c= a.charAt(i);
+    			if(Character.isUpperCase(c))
+    			countUp++;
+    			if(Character.isLowerCase(c))
+    			countLow++;
+    			if(Character.isDigit(c))
+    				digit++;
+    		}
+    		if(countLow>=1 && countUp>=1 && digit>=1 ) {
+    			countLow=0;
+    			countUp=0;
+    			digit=0;
+    			return true;
+    		}}
+    	return false;
     }
 	@Override
 	public boolean isPasswordMatch() {

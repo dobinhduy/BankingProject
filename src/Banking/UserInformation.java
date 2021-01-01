@@ -44,6 +44,10 @@ public class UserInformation
 	}
 	
 
+	public void setPeriod(String period) {
+		Period = period;
+	}
+
 	public Double getTotalWithdrawAndTranfer() {
 		return totalWithdrawAndTranfer;
 	}
@@ -51,11 +55,6 @@ public class UserInformation
 	public void setTotalWithdrawAndTranfer(Double totalWithdrawAndTranfer) {
 		this.totalWithdrawAndTranfer = totalWithdrawAndTranfer;
 	}
-
-	public void setPeriod(String period) {
-		Period = period;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -129,6 +128,7 @@ public class UserInformation
 				+ "Number of created Month: "+Period +"\n"+ "TotalDepositOfMonth: "+ totalDepositOfMonth
 				+"\n"+ "TotalWithdrawandTranOfMonth: "+ totalWithdrawAndTranfer;
 	}
+
 	
 	
 	

@@ -60,6 +60,8 @@ public class MainMenu extends JFrame implements MatchAble {
 	JButton viewHistory =new JButton("View History",new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\eye.png") );
 	
 	JLabel time = new JLabel(" ");
+	JPanel central = new JPanel();
+	JPanel panel_3 = new JPanel();
 	JLabel lblNewLabel_1 = new JLabel(new ImageIcon("D:\\Code\\BankingOOP\\BankingProject\\src\\schedule.png"));
 	JScrollPane scrollPane = new JScrollPane();
 	JPanel center = new JPanel();
@@ -69,7 +71,6 @@ public class MainMenu extends JFrame implements MatchAble {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dobin\\OneDrive\\Desktop\\OOP\\image\\banking.png"));
 		this.ac=acc;
 		statTime();
-		System.out.println(ac.getAccountType());
 		this.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we)
 			{
@@ -81,11 +82,11 @@ public class MainMenu extends JFrame implements MatchAble {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(220, 50, 1074, 712);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		JPanel central = new JPanel();
+		
 		getContentPane().add(central, BorderLayout.CENTER);
 		central.setLayout(new BorderLayout(0, 50));
 		
-		JPanel panel_3 = new JPanel();
+		
 		panel_3.setForeground(Color.WHITE);
 		panel_3.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel_3.setBackground(Color.DARK_GRAY);
@@ -296,8 +297,7 @@ public class MainMenu extends JFrame implements MatchAble {
 			public void actionPerformed(ActionEvent e) {
 				if(!withDrawtxt.getText().isEmpty()) {								
 				 if(isNumeric(withDrawtxt.getText())){
-					System.out.println(ac.user.getTotalWithdrawAndTranfer() > 1000);
-					if(ac.user.getTotalWithdrawAndTranfer() > 1000) 
+					if(ac.user.getTotalWithdrawAndTranfer() > 1000 && ac.getAccountType()==1) 
 					     JOptionPane.showMessageDialog(null, "Your reached the withdraw and tranfer limmit per month!!");	 
 					else { 
 					 Double amountWithdraw=Double.parseDouble(withDrawtxt.getText());
@@ -387,10 +387,13 @@ public class MainMenu extends JFrame implements MatchAble {
 	
 	protected void painBalance() {
 		panelClear();
-		center.setBorder(new EmptyBorder(160, 180, 160, 250));
+		center.setBorder(new EmptyBorder(160, 150, 160, 250));
 		center.setLayout(new GridLayout(0,2,150,0));
 		center.add(new JLabel("Available Amount"));
-		center.add(new JLabel(""+ac.getBalance()+" dollars"));
+		center.add(new JLabel(""+ac.getBalance()+" Dollars"));
+		center.add(new JLabel("Total WithDraw Of Month: "));
+		center.add(new JLabel(ac.user.getTotalWithdrawAndTranfer()+" Dollars"));
+		
 		center.add(new JLabel());
 		center.add(new JLabel());
 		center.add(new JLabel());
@@ -594,12 +597,12 @@ public class MainMenu extends JFrame implements MatchAble {
 			long difference_In_Days=(perious/(1000*60*60*24)%365);
 			int numberofMonth =Integer.parseInt(ac.user.getPeriod());
 			if(ac.getAccountType()==1) {
-			   if(difference_In_Days +2> 1 +0*numberofMonth) {		
+			   if(difference_In_Days > 6 +0*numberofMonth) {		
 				if(ac.user.getTotalDepositOfMonth()>1000) {
 				ac.user.setPeriod(""+(numberofMonth+1));
-				ac.setBalance(ac.getBalance()*1.1);
+				ac.setBalance(ac.getBalance()*1.01);
 				ac.user.setTotalDepositOfMonth(0.0);
-				JOptionPane.showMessageDialog(null, "Your balance is increase 10%","Annoument" ,JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Your balance is increase 1%","Annoument" ,JOptionPane.INFORMATION_MESSAGE);
 			                                      }
 				else {
 					JOptionPane.showMessageDialog(null, "Your monthly deposit is not greater than 1000 dollars");

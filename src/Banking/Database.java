@@ -17,8 +17,8 @@ public class Database {
 		if(instance==null) {
 		instance=new Database();
 		}
-		return instance;   
-}
+		return instance;  
+		}
 	private Database() {
 		this.loadData();
 	}
@@ -28,7 +28,6 @@ public class Database {
 				return false;
 			}
 		}
-		
 		return true;
 	}
 	
@@ -65,8 +64,7 @@ public class Database {
 			
 			for(int i=0;i<listofacc.size();i++) {
 				bfw.write(listofacc.get(i).toString());
-			}
-			
+			}		
 			bfw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -126,7 +124,5 @@ public class Database {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		}
-		
-	}
+		}}
 	}

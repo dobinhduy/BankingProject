@@ -6,9 +6,9 @@ public abstract class Account
 	public static final int SAVINGS_ACCOUNT=1;
 	public static final int CURRENT_ACCOUNT=2;
 	
-	public static final Double INSUFFICIENT_BALANCE=1.;
-	public static final Double WITHDRAWAL_LIMIT_UNDER=2.;
-	public static final Double WITHDRAWAL_LIMIT_OVER=3.;
+	public static final int INSUFFICIENT_BALANCE=1;
+	public static final int WITHDRAWAL_LIMIT_UNDER=2;
+	public static final int WITHDRAWAL_LIMIT_OVER=3;
 	
 	private int accountNo;
 	private String password;
@@ -58,13 +58,6 @@ public abstract class Account
 	{
 		password=s;
 	}
-	
-	void activateAccount()
-	{
-		this.isActivated=true;
-	}
-	
-	
 	void depositMoney(double amount)
 	{
 		this.balance+=amount;
@@ -78,9 +71,7 @@ public abstract class Account
 		ac.balance+=amount;
 		return true;	
 	}
-	
-    
-	Double withdrawMoney(double amount)
+	int withdrawMoney(double amount)
 	{
 		if(amount<minWithdrawal)
 			return WITHDRAWAL_LIMIT_UNDER;
@@ -88,11 +79,11 @@ public abstract class Account
 			return WITHDRAWAL_LIMIT_OVER;
 		if(balance-amount<minBalance)
 			return INSUFFICIENT_BALANCE;
-		return 4.;
+		return 4;
 	}
 	
 		public String toString()
-		{   if(getAccountType()==1) {
+		{   if(this.getAccountType()==1) {
 			return "Saving Account " + "\n"+ "Account No: " + accountNo + "\n" +"Password: " + password + "\n" +
 					     user + "\n"+"Balance: " + balance + "\n" + "History: "+vhis.getSize()+"\n"+ vhis.toString()+"\n"+"---------------------"+"\n";
 		}
