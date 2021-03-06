@@ -13,7 +13,7 @@ public class SavingAccount extends Account {
 	}
 	public void setMinBalance(double a)
 	{
-		minBalance=a;
+		minBalance=   a;
 	}
 	
 	public void setWithdrawalLimit(double l, double h)
